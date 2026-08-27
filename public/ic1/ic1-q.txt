@@ -1,0 +1,9 @@
+ A short text file answering:
+What is a web server, in your own words?
+What does Docker do for us, and how is it different from installing Node directly?
+Why do web files go in a public/ folder?
+What does localhost refer to?
+In docker run -p 3000:3000, what do the two numbers mean?
+
+
+ic1_<jmccurry>.zip
