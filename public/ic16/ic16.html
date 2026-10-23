@@ -1,31 +1,24 @@
-<!-- IC15 – COSC 2328 – Professor McCurry
-     Implemented by: [Your Full Name] -->
+<!-- IC16 – COSC 2328 – Professor McCurry
+     Implemented by:Jonn -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IC15 — Pokémon Lookup</title>
-  <link rel="stylesheet" href="css/ic15.css">
-  <script defer src="js/ic15-script.js"></script>
+  <title>IC16 — React Character Showcase</title>
+  <link rel="stylesheet" href="css/ic16.css">
+
+  <!-- React and ReactDOM (v18 — see note below) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel Standalone — transforms JSX into plain JavaScript, right in the browser -->
+  <script src="https://unpkg.com/@babel/standalone@7.29.7/babel.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Pokémon Lookup</h1>
-    <p>fetch() + async/await, live from a real API</p>
-  </header>
+  <div id="root"></div>
 
-  <main id="app-container">
-    <section id="controls">
-      <label for="pokemon-input">Pokémon name:</label>
-      <input type="text" id="pokemon-input" placeholder="Try: pikachu, charizard, eevee">
-      <button id="btn-search">Search</button>
-    </section>
-
-    <p id="status-message"></p>
-
-    <section id="pokemon-card"></section>
-  </main>
+  <script type="text/babel" data-presets="react" src="js/ic16-script.js"></script>
 
   <noscript><div class="alert">Enable JavaScript to view interactive content.</div></noscript>
 </body>

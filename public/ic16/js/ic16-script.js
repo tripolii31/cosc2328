@@ -1,50 +1,89 @@
-// IC15 – COSC 2328 – Professor McCurry
+// IC16 – COSC 2328 – Professor McCurry
 // Implemented by: Jonn
 
-const pokemonInput = document.querySelector("#pokemon-input");
-const statusMessage = document.querySelector("#status-message");
-const pokemonCard = document.querySelector("#pokemon-card");
 
-// --- Search (Step 5:
+// --- Header Component (Step 5) ---
+function Header() {
+  return (
+    <div className="header">
+      <h1>Bikini Bottom Character Showcase</h1>
+      <h2>Built with React functional components</h2>
+    </div>
+  );
+}
 
+// --- CharacterCard Component (Step 6) ---
+function CharacterCard(props) {
+  return (
+    <div className="character-card">
+      <div className="image-frame">
+        <img src={props.image} alt={props.name} />
+      </div>
+      <h3>{props.name}</h3>
+      <p className="role">{props.role}</p>
+      <p>{props.description}</p>
+    </div>
+  );
+}
 
-async function searchPokemon(name) {
-  statusMessage.textContent = "Searching...";
-  statusMessage.className = "";
-  pokemonCard.innerHTML = "";
+// --- CharacterList Component (Step 7) ---
+function CharacterList(props) {
+  return (
+    <div className="character-list">
+      {props.characters.map(function (character, index) {
+        return (
+          <CharacterCard
+            key={index}
+            name={character.name}
+            role={character.role}
+            image={character.image}
+            description={character.description}
+          />
+        );
+      })}
+    </div>
+  );
+}
 
-   try {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + name.toLowerCase().trim());
-
-    if (!response.ok) {
-      throw new Error("Pokémon not found. Check the spelling and try again.");
+// --- App Component (Step 8) ---
+function App() {
+  const characters = [
+    {
+      name: "SpongeBob SquarePants",
+      role: "Fry Cook Hero",
+      image: "https://commons.wikimedia.org/wiki/Special:FilePath/SpongeBob_character.svg",
+      description: "An optimistic, energetic sea sponge who works at the Krusty Krab. Armed with his trusty spatula, he's always ready to help out in Bikini Bottom."
+    },
+    {
+      name: "Patrick Star",
+      role: "Best Friend & Sidekick",
+      image: "https://commons.wikimedia.org/wiki/Special:FilePath/Patrick_Star_character.png",
+      description: "SpongeBob's loyal best friend who lives under a rock. Despite his simple nature, his enthusiasm makes him a dependable ally."
+    },
+    {
+      name: "Sandy Cheeks",
+      role: "Karate Master & Scientist",
+      image: "https://commons.wikimedia.org/wiki/Special:FilePath/Sandy_Cheeks_(transparent).png",
+      description: "A tough squirrel from Texas who's a master of karate and science. Her inventions are crucial whenever Bikini Bottom needs saving."
+    },
+    {
+      name: "Squidward Tentacles",
+      role: "Reluctant Ally",
+      image: "https://commons.wikimedia.org/wiki/Special:FilePath/Squidward_Tentacles.svg",
+      description: "SpongeBob's grumpy neighbor who works at the Krusty Krab. Though he'd rather be playing clarinet, he'll help out... reluctantly."
     }
+  ];
 
-    const data = await response.json();
-    renderPokemon(data);
-    statusMessage.textContent = "";
-  } catch (error) {
-    statusMessage.textContent = error.message;
-    statusMessage.className = "status-error";
-    pokemonCard.innerHTML = "";
-  }
+  return (
+    <div>
+      <Header />
+      <CharacterList characters={characters} />
+    </div>
+  );
 }
 
-// --- Render (Step 8) ---
-function renderPokemon(data) {
-  const types = data.types.map(function (t) {
-    return t.type.name;
-  });
+// --- Create the root once
 
-    pokemonCard.innerHTML =
-    "<img src='" + data.sprites.front_default + "' alt='" + data.name + "'>" +
-    "<h2>" + data.name + "</h2>" +
-    types.map(function (t) {
-      return "<span class='type-badge'>" + t + "</span>";
-    }).join("");
-}
+const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-// --- Wiring (Step 6) ---
-document.querySelector("#btn-search").addEventListener("click", function () {
-  searchPokemon(pokemonInput.value);
-});
+root.render(<App />);
