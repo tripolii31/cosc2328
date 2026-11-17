@@ -29,6 +29,9 @@ app.get('/ic19/config', (req, res) => {                  // NEW — IC19: GET ro
 
 app.use("/ic20", require("./routes/ic20-routes"));       // NEW — IC20: mount the ic20 router
 
+app.use("/ic22", require("./routes/ic22-routes"));       // NEW — IC22: mount the ic22 router
+
+
 app.listen(PORT, "0.0.0.0", () =>                        // 0.0.0.0 makes the server reachable from the droplet (IC2)
   console.log(`Running on http://localhost:${PORT}`)
 );
