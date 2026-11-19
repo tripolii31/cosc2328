@@ -31,6 +31,7 @@ app.use("/ic20", require("./routes/ic20-routes"));       // NEW — IC20: mount 
 
 app.use("/ic22", require("./routes/ic22-routes"));       // NEW — IC22: mount the ic22 router
 
+app.use("/ic23", require("./routes/ic23-routes"));       // NEW — IC23: mount the ic23 router
 
 app.listen(PORT, "0.0.0.0", () =>                        // 0.0.0.0 makes the server reachable from the droplet (IC2)
   console.log(`Running on http://localhost:${PORT}`)
